@@ -1,4 +1,4 @@
-# Create React App
+# Netflix-GPT
 - create new react app
 - Configured Tailwind css
 - Header
