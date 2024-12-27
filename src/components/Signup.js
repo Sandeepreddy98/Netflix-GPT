@@ -5,6 +5,8 @@ import { useRef, useState } from "react";
 import { checkValidSignupData } from "../utils/validate/validateSingup";
 import { apiUrl } from "../utils/url";
 import axios from "axios";
+import { config } from "../config";
+import { signUpUser } from "../firebase/functions";
 
 const Signup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -20,13 +22,31 @@ const Signup = () => {
     );
     setErrorMessage(message);
     if (message) return;
-    signUpAPI({
+    const params = {
       name: name.current.value.trim(),
       email: email.current.value.trim(),
       password: password.current.value.trim(),
-    });
+    }
+    
+    if(config.backend === "firebase"){
+      signUpUserUsingFirebase(params)
+    }else{
+      signUpAPI(params);
+    }
   };
 
+  //using firebase
+  const signUpUserUsingFirebase = async({email,password}) => {
+    try{
+      const user = await signUpUser(email,password)
+      console.log(user);
+      
+    }catch(err){
+      setErrorMessage(err.message)
+    }
+  }
+  
+  //using node backend
   const signUpAPI = async (params) => {
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, params);
