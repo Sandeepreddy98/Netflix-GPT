@@ -6,16 +6,13 @@ import { apiUrl } from "../utils/url";
 import axios from "axios";
 import { config } from "../config";
 import { signUpUser } from "../utils/firebase/functions";
-import { auth } from "../utils/firebase/firebase";
 import { updateProfile } from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { adduser } from "../utils/redux-store/userSlice";
 import Header from "./header";
 
 const Signup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+
   const { background } = images;
   const name = useRef(null);
   const email = useRef(null);
@@ -51,10 +48,6 @@ const Signup = () => {
             displayName: name.current.value.trim(),
             photoURL: `https://ui-avatars.com/api/?name=${name.current.value.trim()}&size=48&background=random&rounded=true`,
           });
-          const { uid, email, displayName, photoURL } = auth.currentUser;
-          dispatch(
-            adduser({ uid: uid, email: email, displayName: displayName ,photoURL : photoURL})
-          );
           navigate("/login");
         } catch (error) {
           navigate("/error");

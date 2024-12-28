@@ -8,12 +8,9 @@ import { apiUrl } from "../utils/url";
 import { config } from "../config";
 import { signInUser } from "../utils/firebase/functions";
 import Header from "./header";
-import { useDispatch } from "react-redux";
-import { adduser } from "../utils/redux-store/userSlice";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
-  const dispatch  = useDispatch()
   const navigate = useNavigate()
   const { background } = images;
   const email = useRef(null);
@@ -53,13 +50,6 @@ const Login = () => {
   const loginInUsingFirebase = async({email,password}) => {
     try {
       const user = await signInUser(email,password)
-      if(user.uid){
-        const { uid, email, displayName, photoURL } = user;
-          dispatch(
-            adduser({ uid: uid, email: email, displayName: displayName ,photoURL : photoURL})
-          );
-        navigate('/browse')
-      }
     } catch (error) {
       setErrorMessage(error.message)
     }

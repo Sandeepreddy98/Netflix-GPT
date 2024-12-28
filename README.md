@@ -12,6 +12,7 @@
 - Setup Store 
 - Navigate to browse post login
 - Signout from the application
+- Moved OnAuthChanged to common place i.e header component
 
 ## Features
 - Signup Component
@@ -38,3 +39,6 @@
 - Navigate to /login post signup
 - Navigate to /browse post login
 - Signout using Firebase and redirect to '/login'
+- OnAuthChanged code moved to header.
+  - If user logged in it'll redirect to '/browse' even if we try to navigate '/login'
+  - If user logged out in it'll redirect to '/login' even if we try to navigate '/browse'
