@@ -13,6 +13,8 @@
 - Navigate to browse post login
 - Signout from the application
 - Moved OnAuthChanged to common place i.e header component
+- Unsubscribed OnAuthChanged when component unmounts.
+
 
 ## Features
 - Signup Component
@@ -42,3 +44,4 @@
 - OnAuthChanged code moved to header.
   - If user logged in it'll redirect to '/browse' even if we try to navigate '/login'
   - If user logged out in it'll redirect to '/login' even if we try to navigate '/browse'
+- Unsubscribed OnAuthChanged when component unmounts.

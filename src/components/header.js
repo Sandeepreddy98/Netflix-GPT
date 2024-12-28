@@ -20,7 +20,7 @@ const Header = () => {
 
   useEffect(() => {
     // Listen for authentication state changes
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName,photoURL } = user;
         dispatch(adduser({ uid: uid, email: email, displayName: displayName,photoURL : photoURL }));
@@ -30,6 +30,8 @@ const Header = () => {
         navigate("/login");
       }
     });
+    
+    return () => unsubscribe()
   }, []);
 
   return (
