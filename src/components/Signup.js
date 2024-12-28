@@ -1,16 +1,21 @@
 import { Link, useNavigate } from "react-router-dom";
 import { images } from "../utils/images/imageConstans";
-import { ReactComponent as NetflixLogo } from "../utils/images/netflix-logo.svg";
 import { useRef, useState } from "react";
 import { checkValidSignupData } from "../utils/validate/validateSingup";
 import { apiUrl } from "../utils/url";
 import axios from "axios";
 import { config } from "../config";
 import { signUpUser } from "../utils/firebase/functions";
+import { auth } from "../utils/firebase/firebase";
+import { updateProfile } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { adduser } from "../utils/redux-store/userSlice";
+import Header from "./header";
 
 const Signup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { background } = images;
   const name = useRef(null);
   const email = useRef(null);
@@ -37,20 +42,36 @@ const Signup = () => {
   };
 
   //using firebase
-  const signUpUserUsingFirebase = async({email,password}) => {
-    try{
-      const user = await signUpUser(email,password)
-      navigate('/login')
-    }catch(err){
-      setErrorMessage(err.message)
+  const signUpUserUsingFirebase = async ({ email, password }) => {
+    try {
+      const user = await signUpUser(email, password);
+      if (user) {
+        try {
+          await updateProfile(user, {
+            displayName: name.current.value.trim(),
+            photoURL: `https://ui-avatars.com/api/?name=${name.current.value.trim()}&size=48&background=random&rounded=true`,
+          });
+          const { uid, email, displayName, photoURL } = auth.currentUser;
+          dispatch(
+            adduser({ uid: uid, email: email, displayName: displayName ,photoURL : photoURL})
+          );
+          navigate("/login");
+        } catch (error) {
+          navigate("/error");
+        }
+      }
+    } catch (err) {
+      setErrorMessage(err.message);
     }
-  }
+  };
   
   //using node backend
   const signUpAPI = async (params) => {
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, params);
-      navigate('/login')
+      if(response){
+        navigate('/login')
+      }
     } catch (err) {
       setErrorMessage(err.message)
     }
@@ -61,7 +82,7 @@ const Signup = () => {
       className="bg-cover bg-center h-screen w-screen absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-90"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <NetflixLogo className="w-[148px] h-[40px] fill-[#e50914] ml-40 mt-8" />
+      <Header/>
       <div className="container mx-auto bg-gray-200 bg-opacity-60 bac p-9 mt-12 w-fit flex flex-col bg-gray-950">
         <h2 className="text-3xl font-bold mb-4 text-slate-50">Sign Up</h2>
         <input
