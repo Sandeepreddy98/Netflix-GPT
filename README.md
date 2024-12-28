@@ -11,6 +11,7 @@
 - Login functionality using firebase
 - Setup Store 
 - Navigate to browse post login
+- Signout from the application
 
 ## Features
 - Signup Component
@@ -36,3 +37,4 @@
   - dispatch action removeUser whe user logout
 - Navigate to /login post signup
 - Navigate to /browse post login
+- Signout using Firebase and redirect to '/login'
