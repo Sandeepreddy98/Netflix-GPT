@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { images } from "../utils/images/imageConstans";
 import { ReactComponent as NetflixLogo } from "../utils/images/netflix-logo.svg";
 import { useRef, useState } from "react";
@@ -6,10 +6,11 @@ import { checkValidSignupData } from "../utils/validate/validateSingup";
 import { apiUrl } from "../utils/url";
 import axios from "axios";
 import { config } from "../config";
-import { signUpUser } from "../firebase/functions";
+import { signUpUser } from "../utils/firebase/functions";
 
 const Signup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate()
   const { background } = images;
   const name = useRef(null);
   const email = useRef(null);
@@ -39,8 +40,7 @@ const Signup = () => {
   const signUpUserUsingFirebase = async({email,password}) => {
     try{
       const user = await signUpUser(email,password)
-      console.log(user);
-      
+      navigate('/login')
     }catch(err){
       setErrorMessage(err.message)
     }
@@ -50,9 +50,9 @@ const Signup = () => {
   const signUpAPI = async (params) => {
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, params);
-      console.log(response);
+      navigate('/login')
     } catch (err) {
-      console.error("Error while signing up : ", err);
+      setErrorMessage(err.message)
     }
   };
 

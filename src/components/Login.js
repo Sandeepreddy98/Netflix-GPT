@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { images } from "../utils/images/imageConstans";
 import { ReactComponent as NetflixLogo } from "../utils/images/netflix-logo.svg";
 import { useRef } from "react";
@@ -6,9 +6,12 @@ import { checkValidLoginData } from "../utils/validate/validateLogin";
 import { useState } from "react";
 import axios from "axios";
 import { apiUrl } from "../utils/url";
+import { config } from "../config";
+import { signInUser } from "../utils/firebase/functions";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate()
   const { background } = images;
   const email = useRef(null);
   const password = useRef(null);
@@ -19,20 +22,37 @@ const Login = () => {
     );
     setErrorMessage(message);
     if (message) return;
-    loginAPI({
+    const params = {
       email: email.current.value.trim(),
       password: password.current.value.trim(),
-    });
+    }
+    if(config.backend === 'firebase'){
+      loginInUsingFirebase(params)
+    }else{
+      loginAPI(params);
+    }
+    
   };
 
+  //using node
   const loginAPI = async (params) => {
     try {
       const response = await axios.post(`${apiUrl}/auth/login`, params);
-      console.log(response);
+      navigate('/browse')
     } catch (err) {
-      console.error("Error while signing up : ", err);
+      setErrorMessage(err.message)
     }
   };
+
+  //using firebase
+  const loginInUsingFirebase = async({email,password}) => {
+    try {
+      const user = await signInUser(email,password)
+      navigate('/browse')
+    } catch (error) {
+      setErrorMessage(error.message)
+    }
+  }
   return (
     <div
       className="bg-cover bg-center h-screen w-screen absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-90"
@@ -40,7 +60,7 @@ const Login = () => {
     >
       <NetflixLogo className="w-[148px] h-[40px] fill-[#e50914] ml-40 mt-8" />
       <div className="container mx-auto bg-gray-200 bg-opacity-60 bac p-9 mt-12 w-fit flex flex-col bg-gray-950">
-        <h2 className="text-3xl font-bold mb-4 text-slate-50">Sign Up</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-50">Login</h2>
         <input
           type="email"
           placeholder="Enter your email"

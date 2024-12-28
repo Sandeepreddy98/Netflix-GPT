@@ -7,6 +7,10 @@
 - Form Validations
 - useRef Hook
 - Firebase setup for creating,hosting and deploying.
+- Signup functionality using firebase
+- Login functionality using firebase
+- Setup Store 
+- Navigate to browse post login
 
 ## Features
 - Signup Component
@@ -21,3 +25,14 @@
   - firebase login
   - firebase init
   - firebase deploy
+- Signup Functionality
+  - Signup functionality using firebase - createUserWithEmailAndPassword
+  - SignIn functionality using firebase - signInWithEmailAndPassword
+- Setup Redux store
+  - created appStore
+  - created userSlice
+  - Provided appStore to application
+  - dispatch action addUser when user login
+  - dispatch action removeUser whe user logout
+- Navigate to /login post signup
+- Navigate to /browse post login
