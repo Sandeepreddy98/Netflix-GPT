@@ -16,6 +16,7 @@
 - Unsubscribed OnAuthChanged when component unmounts.
 - TMDB for movie data which gives API
 - Created moviesSlice for adding it to redux store
+- Created a custom hook 
 
 
 ## Features
@@ -50,3 +51,5 @@
 - TMDB for Movies
   - Created a account in TMDB website
   - nowPlayingMovies API and added those movies to the store.
+- Created a custom hook
+  - For reducing the code in browse component i.e Single Responsibility Principle.

@@ -1,6 +1,6 @@
 export const apiUrl = "http://localhost:8000";
 
-export const options = {
+export const TMDB_OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
