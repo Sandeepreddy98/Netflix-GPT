@@ -14,6 +14,8 @@
 - Signout from the application
 - Moved OnAuthChanged to common place i.e header component
 - Unsubscribed OnAuthChanged when component unmounts.
+- TMDB for movie data which gives API
+- Created moviesSlice for adding it to redux store
 
 
 ## Features
@@ -45,3 +47,6 @@
   - If user logged in it'll redirect to '/browse' even if we try to navigate '/login'
   - If user logged out in it'll redirect to '/login' even if we try to navigate '/browse'
 - Unsubscribed OnAuthChanged when component unmounts.
+- TMDB for Movies
+  - Created a account in TMDB website
+  - nowPlayingMovies API and added those movies to the store.

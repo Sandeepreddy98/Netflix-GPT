@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { images } from "../utils/images/imageConstans";
 import { useRef, useState } from "react";
 import { checkValidSignupData } from "../utils/validate/validateSingup";
-import { apiUrl } from "../utils/url";
+import { apiUrl } from "../utils/constants";
 import axios from "axios";
 import { config } from "../config";
 import { signUpUser } from "../utils/firebase/functions";

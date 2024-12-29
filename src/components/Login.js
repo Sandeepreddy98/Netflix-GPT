@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { checkValidLoginData } from "../utils/validate/validateLogin";
 import { useState } from "react";
 import axios from "axios";
-import { apiUrl } from "../utils/url";
+import { apiUrl } from "../utils/constants";
 import { config } from "../config";
 import { signInUser } from "../utils/firebase/functions";
 import Header from "./header";
