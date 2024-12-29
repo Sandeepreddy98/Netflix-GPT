@@ -25,6 +25,13 @@
     - Movie list * n
       - Movie card * n
 
+- Created videoTitle component dynamically which takes title,overview,play & info button
+- Created VideoBackground component
+  - Created MovieTrailer slice 
+  - Created Customhook for useMovieTrailer
+  - addMovieTrailer reducer funcion and use that function to dispatch an action
+  - Play movietrailer in backgound using youtube iframe.
+
 ## Features
 - Signup Component
   - UI for login
