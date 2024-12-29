@@ -17,7 +17,13 @@
 - TMDB for movie data which gives API
 - Created moviesSlice for adding it to redux store
 - Created a custom hook 
-
+- UI Planing
+  - Primary Container
+    - Video Background
+    - Video Title
+  - Secondary Container
+    - Movie list * n
+      - Movie card * n
 
 ## Features
 - Signup Component
@@ -53,3 +59,8 @@
   - nowPlayingMovies API and added those movies to the store.
 - Created a custom hook
   - For reducing the code in browse component i.e Single Responsibility Principle.
+- Primary Container
+  - Video Title 
+    - Show Title,Description,Play button and info button
+  - Video Background
+    - Playing trailer from youtube in the background.

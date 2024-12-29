@@ -5,6 +5,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { adduser, removeUser } from "../utils/redux-store/userSlice";
+import {LOGO} from '../utils/constants'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -35,11 +36,12 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="flex justify-between">
-      <NetflixLogo className="w-[148px] h-[40px] fill-[#e50914] ml-40 mt-8" />
-
+    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
+      <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo" />
       {user && (
-        <div className="relative inline-block text-left mt-6 mr-6">
+        <div className="flex p-2 justify-between">
+          {user && (
+        <div className="relative inline-block text-left p-4">
           <input type="checkbox" id="dropdownToggle" className="peer hidden" />
           <label htmlFor="dropdownToggle" className="cursor-pointer">
             <img
@@ -56,6 +58,8 @@ const Header = () => {
               Logout
             </span>
           </div>
+        </div>
+      )}
         </div>
       )}
     </div>
