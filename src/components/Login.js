@@ -60,7 +60,7 @@ const Login = () => {
       style={{ backgroundImage: `url(${background})` }}
     >
       <Header/>
-      <div className="container mx-auto bg-gray-200 bg-opacity-60 bac p-9 mt-12 w-fit flex flex-col bg-gray-950">
+      <div className="container mx-auto bg-gray-200 bg-opacity-60 bac p-9 mt-32 w-fit flex flex-col bg-gray-950">
         <h2 className="text-3xl font-bold mb-4 text-slate-50">Login</h2>
         <input
           type="email"

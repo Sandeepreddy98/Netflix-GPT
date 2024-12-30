@@ -7,3 +7,5 @@ export const TMDB_OPTIONS = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWVkYzAxNDk3NWZmNTZlOTQzMWJmODEwNGJkYmRlNSIsIm5iZiI6MTczNTM4NTcwNy44MDYwMDAyLCJzdWIiOiI2NzZmZTI2YmJmMTBmZjE5ODQ2MTlhYmUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.jGa_j2XW6HXzS0lWOJZ9i3vGjVLEqe3iRGjYQT3Qc_E",
   },
 };
+
+export const TMDB_POSTERPATH_CDN = "https://image.tmdb.org/t/p/w500/"
