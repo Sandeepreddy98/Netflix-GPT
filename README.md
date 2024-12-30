@@ -24,13 +24,30 @@
   - Secondary Container
     - Movie list * n
       - Movie card * n
+- Primary Container
+  - Video Title
+    - Created videoTitle component dynamically which takes title,overview,play & info button
+    - Created VideoBackground component
+  - Video Background
+    - Created MovieTrailer slice 
+    - Created Customhook for useMovieTrailer
+    - addMovieTrailer reducer funcion and use that function to dispatch an action
+    - Play movietrailer in backgound using youtube iframe.
+- Secondary Container
+  - Movie List based on category from the MoviesSlice which is in redux store
+    - Now playing
+      - Used the same movies slice which has list of now playing movies.
+    - Popular Movies
+      - Created addPopularMovies reducer function in movies slice.
+      - Created a custom hook for Popular movies in that used dispath action to update to moviesSlice.
+    - Upcoming Movies
+      - Created addUpComingMovies reducer function in movies slice.
+      - Created a custom hook for Upcoming movies in that used dispath action to update to moviesSlice.
+    - Top Rated Movies
+      - Created addTopRatedMovies reducer function in movies slice.
+      - Created a custom hook for Top Rated Movies in that used dispath action to update to moviesSlice.
+     - Display cards for showing movies.
 
-- Created videoTitle component dynamically which takes title,overview,play & info button
-- Created VideoBackground component
-  - Created MovieTrailer slice 
-  - Created Customhook for useMovieTrailer
-  - addMovieTrailer reducer funcion and use that function to dispatch an action
-  - Play movietrailer in backgound using youtube iframe.
 
 ## Features
 - Signup Component
@@ -71,3 +88,9 @@
     - Show Title,Description,Play button and info button
   - Video Background
     - Playing trailer from youtube in the background.
+- Secondary Container
+  - Now playing 
+  - Top Rated 
+  - Popular 
+  - Upcoming movies 
+    - Movie card to display card. 
