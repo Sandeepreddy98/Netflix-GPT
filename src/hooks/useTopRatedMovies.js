@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { TMDB_OPTIONS } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTopRatedMovies } from "../utils/redux-store/movieSlice";
 
 const useTopRatedMovies = () => {
+  const {topRatedMovies} = useSelector(store => store.movies)
   const dispatch = useDispatch();
 
   const getTopRatedMovies = async () => {
@@ -20,7 +21,7 @@ const useTopRatedMovies = () => {
   };
 
   useEffect(() => {
-    getTopRatedMovies();
+    if(!topRatedMovies) getTopRatedMovies();
   }, []);
 };
 

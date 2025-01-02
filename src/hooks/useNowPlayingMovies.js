@@ -1,10 +1,11 @@
 import axios from "axios"
-import { useDispatch } from "react-redux"
+import { useDispatch ,useSelector} from "react-redux"
 import { useEffect } from "react"
 import { TMDB_OPTIONS } from "../utils/constants"
 import { addNowPlayingMovies } from "../utils/redux-store/movieSlice"
 
 const useNowPlayingMovies = () => {
+    const {nowPlayingMovies} = useSelector(store => store.movies)
     const dispatch = useDispatch()
 
     const getNowPlayingMovies = async () => {
@@ -17,7 +18,7 @@ const useNowPlayingMovies = () => {
     }
 
     useEffect(() => {
-        getNowPlayingMovies()
+        if(!nowPlayingMovies) getNowPlayingMovies()
     },[])
 }
 
