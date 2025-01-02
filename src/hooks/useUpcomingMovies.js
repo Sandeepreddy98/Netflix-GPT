@@ -1,10 +1,11 @@
 import axios from "axios"
 import { TMDB_OPTIONS } from "../utils/constants"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addUpComingMovies } from "../utils/redux-store/movieSlice";
 import { useEffect } from "react";
 
 const useUpcomingMovies = () => {
+    const { upComingMovies } = useSelector(store => store.movies)
     const dispatch = useDispatch();
 
     const getUpcomingMovies = async () => {
@@ -17,7 +18,7 @@ const useUpcomingMovies = () => {
     }
 
     useEffect(() => {
-        getUpcomingMovies()
+        if(!upComingMovies) getUpcomingMovies()
     },[])
 }
 

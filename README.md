@@ -48,6 +48,9 @@
       - Created a custom hook for Top Rated Movies in that used dispath action to update to moviesSlice.
      - Display cards for showing movies.
 
+- GPT Feature - Movie Recommendation
+  - Created search bar for movie search
+  - Created a slice for the state whether to show need  to display GPT Search screen or movies recomme dation screen.
 
 ## Features
 - Signup Component
@@ -94,3 +97,6 @@
   - Popular 
   - Upcoming movies 
     - Movie card to display card. 
+- GPT Movie Recommendation
+  - GPT slice for storing the GPT related data in store
+  - Created UI for GPT search bar with button.

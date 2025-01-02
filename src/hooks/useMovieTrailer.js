@@ -1,10 +1,11 @@
 import axios from "axios"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addTrailerVideo } from "../utils/redux-store/movieSlice"
 import { TMDB_OPTIONS } from "../utils/constants"
 import { useEffect } from "react"
 
 const useMovieTrailer = (movieId) => {
+    const {trailerVideo} = useSelector(store => store.movies)
     const dispatch  = useDispatch()
     const getMovieVideos = async() => {
         try{
@@ -18,7 +19,7 @@ const useMovieTrailer = (movieId) => {
     }
 
     useEffect(() => {
-        getMovieVideos()
+        if(!trailerVideo) getMovieVideos()
     },[])
 }
 

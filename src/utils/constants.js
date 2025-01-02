@@ -4,8 +4,10 @@ export const TMDB_OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWVkYzAxNDk3NWZmNTZlOTQzMWJmODEwNGJkYmRlNSIsIm5iZiI6MTczNTM4NTcwNy44MDYwMDAyLCJzdWIiOiI2NzZmZTI2YmJmMTBmZjE5ODQ2MTlhYmUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.jGa_j2XW6HXzS0lWOJZ9i3vGjVLEqe3iRGjYQT3Qc_E",
+      "Bearer " + process.env.REACT_APP_TMDB_KEY,
   },
 };
 
 export const TMDB_POSTERPATH_CDN = "https://image.tmdb.org/t/p/w500/"
+
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY
