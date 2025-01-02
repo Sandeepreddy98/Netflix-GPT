@@ -97,3 +97,6 @@
   - Popular 
   - Upcoming movies 
     - Movie card to display card. 
+- GPT Movie Recommendation
+  - GPT slice for storing the GPT related data in store
+  - Created UI for GPT search bar with button.
