@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { adduser, removeUser } from "../utils/redux-store/userSlice";
 import {LOGO} from '../utils/constants'
+import { toggleGptSearchView } from "../utils/redux-store/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector(store => store.gpt?.showGptSearch);
   const handleSingout = async () => {
     try {
       await signOut(auth);
@@ -35,12 +37,18 @@ const Header = () => {
     return () => unsubscribe()
   }, []);
 
+  const handleGPTSearchClick = () => {
+    dispatch(toggleGptSearchView())
+  }
+
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
       <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo" />
       {user && (
         <div className="flex p-2 justify-between">
           {user && (
+            <>
+            <button className="h-12 py-2 px-4 mt-2 bg-purple-800 text-white rounded-lg" onClick={handleGPTSearchClick}>{showGptSearch ? "Home Page" : "GPT Search"}</button>
         <div className="relative inline-block text-left p-4">
           <input type="checkbox" id="dropdownToggle" className="peer hidden" />
           <label htmlFor="dropdownToggle" className="cursor-pointer">
@@ -59,6 +67,7 @@ const Header = () => {
             </span>
           </div>
         </div>
+        </>
       )}
         </div>
       )}

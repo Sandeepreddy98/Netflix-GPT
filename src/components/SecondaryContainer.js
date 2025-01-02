@@ -7,8 +7,8 @@ const SecondaryContainer = () => {
   const moviesCategory = storeKeys?.filter((key) => key !== "trailerVideo");
   return (
       <div className="-mt-80 z-50 relative">
-      {moviesCategory?.map((category) => (
-        <MovieList title={category} movies={movies[category]} key={category} />
+      {moviesCategory?.map((category,index) => (
+        <MovieList title={category} movies={movies[category]} key={index} />
       ))}
       </div>
   );
