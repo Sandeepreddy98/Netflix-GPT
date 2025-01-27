@@ -11,3 +11,5 @@ export const TMDB_OPTIONS = {
 export const TMDB_POSTERPATH_CDN = "https://image.tmdb.org/t/p/w500/"
 
 export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY
+
+export const FIREBASE_KEY = process.env.FIREBASE_API_KEY
